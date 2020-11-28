@@ -45,23 +45,54 @@
               
             </h:panelGrid>
             
-            <p:dataTable var="aluno" value="#{dtBasicView.cars}">
-                <p:column headerText="Id">
-                    <h:outputText value="#{car.id}" />
+            
+            
+            <p:dataTable id="tabela"  var="aluno" editable="true" value="#{CadastroAlunoBean.alunos}">
+                
+                
+                <p:ajax event="rowEdit" listener="#{CadastroAlunoBean.onRowEdit}"/>                
+                <p:ajax event="rowEditCancel" listener="#{CadastroAlunoBean.onRowCancel}"/>
+                
+                <p:column headerText="Deletar" >
+                    <p:commandButton value="Deletar"   id="delete" action="#{CadastroAlunoBean.deletar(aluno)}" process="tabela"/>
+                </p:column>
+                
+                <p:column headerText="ID" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{aluno.id}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{aluno.id}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="Year">
-                    <h:outputText value="#{car.year}" />
+                <p:column headerText="NOME" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{aluno.nomecompleto}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{aluno.nomecompleto}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
                 </p:column>
+                
+                <p:column headerText="Editar" >
+                    <p:rowEditor/>
+                </p:column>
+                
 
-                <p:column headerText="Brand">
-                    <h:outputText value="#{car.brand}" />
-                </p:column>
 
-                <p:column headerText="Color">
-                    <h:outputText value="#{car.color}" />
-                </p:column>
             </p:dataTable>
+            
+<!--            <p:dataTable id="clientes" var="cliente" value="#{clientesMB.clientes}" selectionMode="single" selection="#{clientesMB.clienteSelecionado}" rowKey="#{cliente.id}">
+                <f:facet name="header">
+                    Clientes
+                </f:facet>
+                <p:ajax event="rowSelect" listener="#{clientesMB.onRowSelect}" />
+                <p:column headerText="#">
+                    <h:outputText value="#{cliente.id}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{cliente.nome}" />
+                </p:column>
+
+            </p:dataTable>-->
 
 
         </h:form>

@@ -1,5 +1,4 @@
 package Entidades;
-import java.util.Date;
 
 
 public class Aluno {
@@ -47,9 +46,7 @@ public class Aluno {
 
     public void setDatadenascimento(String datadenascimento) {
         this.datadenascimento = datadenascimento;
-    }
-
- 
+    } 
 
     public String getNomeMae() {
         return nomeMae;
