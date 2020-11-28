@@ -1,30 +1,48 @@
 package DAO;
 
+import Entidades.Aluno;
 import Entidades.Turma;
-import Entidades.Usuario;
 import Utils.Conexao;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TurmaDAO {
-    public static boolean salvar(Turma turma) throws Exception{
-        Connection conexao = Conexao.getConnection();
-        PreparedStatement ps;
-        try{
-            ps = conexao.prepareStatement("insert into `platum`.`turma` iddisciplina=?, iddocente=?, idsemestre=?, nometurma=?"); // obtem apena uma única informação
+
+    Connection conexao;
+    PreparedStatement ps;
+        
+    /* Métodos */
+    public void salvar (Turma turma) throws Exception {
+        try {
+            conexao = Conexao.getConnection();
+            if (turma.getId() == null) {
+                ps = conexao.prepareStatement("insert into turma(iddisciplina, iddocente, idsemestre, nometurma) values(?, ?, ?, ?)");
+
+            } else {
+                ps = conexao.prepareStatement("update set turma(iddisciplina=?, iddocente=?, idsemestre=?, nometurma=? where id=?)");
+                ps.setString(8, turma.getId().toString());
+            }
             ps.setInt(1, turma.getDisciplinaId());
             ps.setInt(2, turma.getDocenteId());
-            ps.setInt(3, turma.getSemestreId());
+            ps.setInt(3,  turma.getSemestreId());
             ps.setString(4, turma.getNomeTurma());
-            ResultSet resultSet = ps.executeQuery();
-             while (resultSet.next()) {
-                return true;
-            }
-        }catch(SQLException ex){
-            throw new Exception("Erro na execução do SQL - busca de usuário",ex);
+        
+            
+
+        } catch (SQLException ex) {
+            throw new Exception("Erro na execução do SQL - inserção", ex);
         }
-        return false;
+        try {
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException sqle) {
+            throw new Exception("Erro na execução do SQL - rodar query", sqle);
+        }
     }
 }

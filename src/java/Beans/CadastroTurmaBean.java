@@ -1,8 +1,8 @@
 package Beans;
 
+import DAO.TurmaDAO;
 import Entidades.Turma;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -16,13 +16,12 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class CadastroTurmaBean implements Serializable {
 
-    private Integer iddisciplina;
-    private Integer iddocente;
-    private Integer idsemestre;
-    private String nometurma;
+    private Turma turma;
+    TurmaDAO turmaDAO;
 
     public CadastroTurmaBean() {
-
+        turmaDAO = new TurmaDAO();
+        turma = new Turma();
     }
 
     @PostConstruct
@@ -30,13 +29,17 @@ public class CadastroTurmaBean implements Serializable {
 
     }
 
-    public String salvar() {
-//        Turma turma = new Turma();
-//        try {
-//            Turma.Salvar(turma);
-//        } catch (Exception e) {
-//        }
-        return null;
+    public void salvar() {
+        try {
+            turmaDAO.salvar(turma);
+            addMessage("Dados inseridos com sucesso!");
+        } catch (Exception ex) {
+            addMessage("Dados não inseridos! " + ex);
+            Logger.getLogger(CadastroTurmaBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        atualizarComponente("formTurma");
+        turma = new Turma();
+        
     }
 
     public void addMessage(String msg) {
@@ -49,36 +52,22 @@ public class CadastroTurmaBean implements Serializable {
         RequestContext.getCurrentInstance().update(id);
     }
 
-    public Integer getIddisciplina() {
-        return iddisciplina;
+    public Turma getTurma() {
+        return turma;
     }
 
-    public void setIddisciplina(Integer iddisciplina) {
-        this.iddisciplina = iddisciplina;
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 
-    public Integer getIddocente() {
-        return iddocente;
+    public TurmaDAO getTurmaDAO() {
+        return turmaDAO;
     }
 
-    public void setIddocente(Integer iddocente) {
-        this.iddocente = iddocente;
+    public void setTurmaDAO(TurmaDAO turmaDAO) {
+        this.turmaDAO = turmaDAO;
     }
 
-    public Integer getIdsemestre() {
-        return idsemestre;
-    }
-
-    public void setIdsemestre(Integer idsemestre) {
-        this.idsemestre = idsemestre;
-    }
-
-    public String getNometurma() {
-        return nometurma;
-    }
-
-    public void setNometurma(String nometurma) {
-        this.nometurma = nometurma;
-    }
+   
        
 }

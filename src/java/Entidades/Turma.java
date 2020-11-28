@@ -1,23 +1,14 @@
 package Entidades;
 
-import java.util.Date;
-
 public class Turma {
     /* Atributos */
     private Integer disciplinaId;
     private Integer semestreId;
-    private Integer turmaId;
+    private Integer Id;
     private Integer docenteId;
     private String nomeTurma;
             
-    public Turma (Integer disciplina, Integer semestre, Integer codturma, Integer docente, String nomeTurma) throws Exception {
-        setDisciplinaId(disciplina) ;
-        setSemestreId(semestre) ;
-        setTurmaId(codturma) ;
-        setDocenteId(docente) ;
-        setNomeTurma(nomeTurma);
-    } 
-
+    
     public Integer getDisciplinaId() {
         return disciplinaId;
     }
@@ -34,12 +25,12 @@ public class Turma {
         this.semestreId = semestreId;
     }
 
-    public Integer getTurmaId() {
-        return turmaId;
+    public Integer getId() {
+        return Id;
     }
 
     public void setTurmaId(Integer turmaId) {
-        this.turmaId = turmaId;
+        this.Id = turmaId;
     }
 
     public Integer getDocenteId() {

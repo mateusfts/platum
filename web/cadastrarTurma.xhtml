@@ -1,92 +1,51 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:decorate xmlns="http://www.w3.org/1999/xhtml"
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:f="http://java.sun.com/jsf/core"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template/layout.xhtml"
              xmlns:p="http://primefaces.org/ui">
+    
     <ui:define name="content">
-<div>
-        
-        <h:form>
-            <p:panel header="Cadastrar Turma" style="margin: 10 auto;">
-                <h:panelGrid columns="4" cellpadding="2">
+
+        <p:growl id="msg"/>
+        <h:form id="form" >
+            
+            <h:panelGrid id="grid" columns="4" cellpadding="2">
+                    
                     <h:outputText value="Disciplina" />
-                    <p:selectOneMenu  value="#{selectOneMenuView.console}" >
+                    <p:selectOneMenu  value="#{cadastroTurmaBean.turma.disciplinaId}" >
                         <f:selectItem itemLabel="Selecione" itemValue="0" />
                         <f:selectItem itemLabel="Desenvolvimento Web" itemValue="1" />
                         <f:selectItem itemLabel="Fundamentos de Gestão" itemValue="2" />
                         <f:selectItem itemLabel="Projeto Integrador 3" itemValue="3" />
                     </p:selectOneMenu>
+                    
                     <h:outputText value="Semestre"/>
-                    <p:selectOneMenu  value="#{selectOneMenuView.console}" >
+                    <p:selectOneMenu  value="#{cadastroTurmaBean.turma.semestreId}" >
                         <f:selectItem itemLabel="2020.2" itemValue="1" />
-                    </p:selectOneMenu>
+                   </p:selectOneMenu>
+                    
                     <p:outputLabel value="Nome Turma" />
-                        <p:inputText />
-                    </p:selectOneMenu>
+                    <p:inputText  value="#{cadastroTurmaBean.turma.nomeTurma}"/>
+                    
                     <h:outputText value="Docente"/>
-                    <p:selectOneMenu  value="#{selectOneMenuView.console}" >
+                    <p:selectOneMenu  value="#{cadastroTurmaBean.turma.docenteId}" >
                         <f:selectItem itemLabel="Selecione" itemValue="0" />
                     <f:selectItem itemLabel="David Almir Santiago" itemValue="1" />
                         <f:selectItem itemLabel="Antonio Carrera" itemValue="2" />
                     </p:selectOneMenu>
                                         
                 </h:panelGrid>
-            </p:panel>
+            
             <p:button  value="Limpar"/>
-            <p:button  value="Cadastrar"/>
+                <p:commandButton value="Cadastrar" update="grid" action="#{cadastroTurmaBean.salvar()}" />
             <p:button  value="Voltar"/>
             
         </h:form>
-        </div>
+        
     </ui:define>
                
 </ui:decorate>
 
-<!--
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:head>
-        <title>Cadastro da Turma - Platum</title>
-    </h:head>
-    <h:body>
-        <div>
-        <h:form>
-            <p:panel header="Cadastrar Turma" style="margin: 10 auto;">
-                <h:panelGrid columns="4" cellpadding="2">
-                    <h:outputText value="Disciplina" />
-                    <p:selectOneMenu  value="#{selectOneMenuView.console}" >
-                        <f:selectItem itemLabel="Select One" itemValue="0" />
-                        <f:selectItem itemLabel="Desenvolvimento Web" itemValue="1" />
-                        <f:selectItem itemLabel="Fundamentos de Gestão" itemValue="2" />
-                        <f:selectItem itemLabel="Projeto Integrador 3" itemValue="3" />
-                    </p:selectOneMenu>
-                    <h:outputText value="Semestre"/>
-                    <p:selectOneMenu  value="#{selectOneMenuView.console}" >
-                        <f:selectItem itemLabel="2020.2" itemValue="1" />
-                    </p:selectOneMenu>
-                    <h:outputText value="Docente"/>
-                    <p:selectOneMenu  value="#{selectOneMenuView.console}" >
-                        <f:selectItem itemLabel="Select One" itemValue="0" />
-                    <f:selectItem itemLabel="David Almir Santiago" itemValue="1" />
-                        <f:selectItem itemLabel="Antonio Carrera" itemValue="2" />
-                    </p:selectOneMenu>
-                    <h:outputText value="Turno" />
-                    <p:selectOneMenu  value="#{selectOneMenuView.console}" >
-                        <f:selectItem itemLabel="Select One" itemValue="0" />
-                        <f:selectItem itemLabel="Matutino" itemValue="1" />
-                        <f:selectItem itemLabel="Noturno" itemValue="2" />
-                    </p:selectOneMenu>
-                    <p:button  value="Limpar" />
-                    <p:button  value="Cadastrar" />
-                </h:panelGrid>
-            </p:panel>
-        </h:form>
-        </div>
-    </h:body>
-</html>-->
