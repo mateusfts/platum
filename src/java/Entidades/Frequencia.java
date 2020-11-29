@@ -1,14 +1,13 @@
 package Entidades;
 
-import java.util.Date;
-
 public class Frequencia {
     /* Atributos */
     private Integer id;
     private String status;
     private String data;
     private Integer idTurma;
-    private Integer idAluno;
+    private String idAluno;
+    private Integer idDisciplina;
 
     
     public Integer getId() {
@@ -39,11 +38,20 @@ public class Frequencia {
         this.idTurma = idTurma;
     }
 
-    public Integer getIdAluno() {
+    public String getIdAluno() {
         return idAluno;
     }
 
-    public void setIdAluno(Integer idAluno) {
+    public void setIdAluno(String idAluno) {
         this.idAluno = idAluno;
     }
+
+    public Integer getIdDisciplina() {
+        return idDisciplina;
+    }
+
+    public void setIdDisciplina(Integer idDisciplina) {
+        this.idDisciplina = idDisciplina;
+    }
+    
 }

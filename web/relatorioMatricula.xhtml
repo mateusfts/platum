@@ -10,7 +10,8 @@
     <ui:define name="content">
 
         <div>
-        <h:form>
+            <p:growl id="msg"/>
+            <h:form id="form">
             <p:panel header="Registrar Frequencia Nota" style="margin: 10 auto;">
                 <h:panelGrid columns="4" cellpadding="2">
                     <h:outputText value="Semestre"/>
@@ -33,9 +34,37 @@
                         <f:selectItem itemLabel="Ewerton Pires" itemValue="2" />
                     </p:selectOneMenu>
                     <p:button  value="Limpar" />
-                    <p:button  value="Cadastrar" />
+                    <p:commandButton value="Pesquisar"/> 
                     <p:button  value="Voltar" />
                 </h:panelGrid>
+                
+                <p:dataTable id="tabela"  var="relatorio" editable="true" value="#{RelatorioBean.relatorios}">
+
+                <p:column headerText="Semestre" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{relatorio.idsemestre}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{relatorio.idsemestre}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Disciplina" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{relatorio.iddisciplina}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{relatorio.iddisciplina}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                    
+                    <p:column headerText="Docente" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{relatorio.iddocente}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{relatorio.iddocente}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                
+
+            </p:dataTable>
+                
             </p:panel>
         </h:form>
         </div>

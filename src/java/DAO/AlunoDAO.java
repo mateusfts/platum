@@ -21,11 +21,11 @@ public class AlunoDAO {
         try {
             conexao = Conexao.getConnection();
             if (aluno.getId() == null) {
-                ps = conexao.prepareStatement("INSERT INTO aluno(cpf,nome,datanasc,nomemae,nomepai,sexo,telefone,matAluno) values(?,?,?,?,?,?,?,?)");
+                ps = conexao.prepareStatement("INSERT INTO aluno(cpf,nome,datanasc,nomemae,nomepai,sexo,telefone,matAluno,idsemestre,iddisciplina,idprofissional) values(?,?,?,?,?,?,?,?,?,?,?)");
 
             } else {
-                ps = conexao.prepareStatement("UPDATE aluno set cpf=?, nome=?, datanasc=?, nomemae=?, nomepai=?, sexo=?, telefone=?, matAluno=? where id=?");
-                ps.setString(9, aluno.getId().toString());
+                ps = conexao.prepareStatement("UPDATE aluno set cpf=?, nome=?, datanasc=?, nomemae=?, nomepai=?, sexo=?, telefone=?, matAluno=?,  idsemestre=?,iddisciplina=?,idprofissional=? where id=?");
+                ps.setString(12, aluno.getId().toString());
             }
             ps.setString(1, aluno.getCpf());
             ps.setString(2, aluno.getNomecompleto());
@@ -35,7 +35,9 @@ public class AlunoDAO {
             ps.setString(6, aluno.getIdSexo());
             ps.setString(7, aluno.getTelefone());
             ps.setString(8, aluno.getMatAluno());
-            
+            ps.setString(9, aluno.getIdsemestre());
+            ps.setString(10, aluno.getIddisciplina());
+            ps.setString(11, aluno.getIdprofissional());
 
         } catch (SQLException ex) {
             throw new Exception("Erro na execução do SQL - inserção", ex);
@@ -67,6 +69,9 @@ public class AlunoDAO {
                 aluno.setNomecompleto(resultSet.getString("nome"));
                 aluno.setTelefone(resultSet.getString("telefone"));
                 aluno.setMatAluno(resultSet.getString("matAluno"));
+                aluno.setIdsemestre(resultSet.getString("idsemestre"));
+                aluno.setIddisciplina(resultSet.getString("iddisciplina"));
+                aluno.setIdprofissional(resultSet.getString("idprofissional"));
                 alunos.add(aluno);
             }
             Conexao.closeConnection();

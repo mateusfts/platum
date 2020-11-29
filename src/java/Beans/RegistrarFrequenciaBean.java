@@ -22,11 +22,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class RegistrarFrequenciaBean implements Serializable {
 
-    private Integer id;
-    private String idturma;
-    private String idaluno;
-    private String data;
-    private String status;
+//    private Integer id;
+//    private String idturma;
+//    private String idaluno;
+//    private String data;
+//    private String status;
     List<String> turma;
     TurmaDAO turmaDAO;
     Frequencia frequencia;
@@ -81,73 +81,6 @@ public class RegistrarFrequenciaBean implements Serializable {
         RequestContext.getCurrentInstance().update(id);
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public String getidturma() {
-        return idturma;
-    }
-
-    public void setidturma(String idturma) {
-        this.idturma = idturma;
-    }
-
-    public String getidaluno() {
-        return idaluno;
-    }
-
-    public void setidaluno(String idaluno) {
-        this.idaluno = idaluno;
-    }
-    public String getdata() {
-        return data;
-    }
-
-    public void setdata(String data) {
-        this.data = data;
-    }
-
-    public String getstatus() {
-        return status;
-    }
-
-    public void setstatus(String status) {
-        this.status = status;
-    }
-
-    public String getIdturma() {
-        return idturma;
-    }
-
-    public void setIdturma(String idturma) {
-        this.idturma = idturma;
-    }
-
-    public String getIdaluno() {
-        return idaluno;
-    }
-
-    public void setIdaluno(String idaluno) {
-        this.idaluno = idaluno;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public List<String> getTurma() {
         return turma;
     }
@@ -179,5 +112,7 @@ public class RegistrarFrequenciaBean implements Serializable {
     public void setFrequenciaDAO(FrequenciaDAO frequenciaDAO) {
         this.frequenciaDAO = frequenciaDAO;
     }
+
+    
     
 }

@@ -11,58 +11,74 @@
 
         <p:growl id="msg"/>
         <h:form id="form" >
-            
+
             <p:panel header="Cadastro Aluno" style="margin: 10 auto;" >
 
-            <h:panelGrid id="grid" columns="4" cellpadding="2" >
+                <h:panelGrid id="grid" columns="4" cellpadding="2" >
 
-                <p:outputLabel value="Nome completo" />
-                <p:inputText id="nomecompleto" required="true" value="#{CadastroAlunoBean.aluno.nomecompleto}"/>
+                    <p:outputLabel value="Nome completo" />
+                    <p:inputText id="nomecompleto" required="true" value="#{CadastroAlunoBean.aluno.nomecompleto}"/>
 
-                <p:outputLabel value="Data Nasc." />
-                <p:inputMask id="datadenascimento" required="true" mask="99/99/9999" value="#{CadastroAlunoBean.aluno.datadenascimento}"/>
+                    <p:outputLabel value="Data Nasc." />
+                    <p:inputMask id="datadenascimento" required="true" mask="99/99/9999" value="#{CadastroAlunoBean.aluno.datadenascimento}"/>
 
 
-                <p:outputLabel value="Sexo" />
-                <p:selectOneMenu  id="sexo"  value="#{CadastroAlunoBean.aluno.idSexo}">
-                    <f:selectItem itemLabel="Selecione" itemValue="" />
-                    <f:selectItem itemLabel="Masculino"  itemValue="masculino" />
-                    <f:selectItem itemLabel="Feminino" itemValue="feminino" />
-                </p:selectOneMenu>
+                    <p:outputLabel value="Sexo" />
+                    <p:selectOneMenu  id="sexo"  value="#{CadastroAlunoBean.aluno.idSexo}">
+                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                        <f:selectItem itemLabel="Masculino"  itemValue="masculino" />
+                        <f:selectItem itemLabel="Feminino" itemValue="feminino" />
+                    </p:selectOneMenu>
 
-                <p:outputLabel  value="CPF" />
-                <p:inputMask required="true" id="cpf" mask="999.999.999-99" value="#{CadastroAlunoBean.aluno.cpf}"/>
-                
-                <p:outputLabel  value="Matrícula" />
-                <p:inputMask required="true" id="matricula" mask="99999" value="#{CadastroAlunoBean.aluno.matAluno}"/>
+                    <p:outputLabel  value="CPF" />
+                    <p:inputMask required="true" id="cpf" mask="999.999.999-99" value="#{CadastroAlunoBean.aluno.cpf}"/>
 
-                <p:outputLabel value="Nome Mãe" />
-                <p:inputText required="true" id="nomeMae" value="#{CadastroAlunoBean.aluno.nomeMae}"/>
+                    <p:outputLabel  value="Matrícula" />
+                    <p:inputMask required="true" id="matricula" mask="99999" value="#{CadastroAlunoBean.aluno.matAluno}"/>
 
-                <p:outputLabel value="Nome Pai" />
-                <p:inputText required="true" id="nomePai" value="#{CadastroAlunoBean.aluno.nomePai}"/>
+                    <p:outputLabel value="Nome Mãe" />
+                    <p:inputText required="true" id="nomeMae" value="#{CadastroAlunoBean.aluno.nomeMae}"/>
 
-                <p:outputLabel  value="Celular:" />
-                <p:inputMask  required="true" id="telefone" mask="(99) 99999-9999" value="#{CadastroAlunoBean.aluno.telefone}"/>
-<!--                <p:separator/>-->
-               
-                    <p:commandButton value="Cadastrar" update="grid" action="#{CadastroAlunoBean.salvar()}" />
-              
-            </h:panelGrid>
+                    <p:outputLabel value="Nome Pai" />
+                    <p:inputText required="true" id="nomePai" value="#{CadastroAlunoBean.aluno.nomePai}"/>
+
+                    <p:outputLabel  value="Celular:" />
+                    <p:inputMask  required="true" id="telefone" mask="(99) 99999-9999" value="#{CadastroAlunoBean.aluno.telefone}"/>
+
+                    <h:outputText value="Docente" />
+                    <p:selectOneMenu  value="#{CadastroAlunoBean.aluno.idprofissional}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Semestre"/>
+                    <p:selectOneMenu  value="#{CadastroAlunoBean.aluno.idsemestre}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{registrarFrequenciaBean.turma}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Disciplina"/>
+                    <p:selectOneMenu   value="#{CadastroAlunoBean.aluno.iddisciplina}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
+                    </p:selectOneMenu>    
+                        <!--                <p:separator/>-->
+
+                        <p:commandButton value="Cadastrar" update="grid" action="#{CadastroAlunoBean.salvar()}" />
+
+                </h:panelGrid>
             </p:panel>
-            
-            
-            
+
+
+
             <p:dataTable id="tabela"  var="aluno" editable="true" value="#{CadastroAlunoBean.alunos}">
-                
-                
+
+
                 <p:ajax event="rowEdit" listener="#{CadastroAlunoBean.onRowEdit}"/>                
                 <p:ajax event="rowEditCancel" listener="#{CadastroAlunoBean.onRowCancel}"/>
-                
+
                 <p:column headerText="Deletar" >
                     <p:commandButton value="Deletar"   id="delete" action="#{CadastroAlunoBean.deletar(aluno)}" process="tabela"/>
                 </p:column>
-                
+
                 <p:column headerText="Matricula" >
                     <p:cellEditor>
                         <f:facet name="output"> <h:outputText value="#{aluno.matAluno}"/> </f:facet>
@@ -76,16 +92,16 @@
                         <f:facet name="input"> <p:inputText value="#{aluno.nomecompleto}" style="width:100%"/> </f:facet>
                     </p:cellEditor>
                 </p:column>
-                
+
                 <p:column headerText="Editar" >
                     <p:rowEditor/>
                 </p:column>
-                
+
 
 
             </p:dataTable>
-            
-         
+
+
 
 
         </h:form>

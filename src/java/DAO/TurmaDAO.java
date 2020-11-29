@@ -22,14 +22,14 @@ public class TurmaDAO {
         try {
             conexao = Conexao.getConnection();
             if (turma.getId() == null) {
-                ps = conexao.prepareStatement("insert into turma(iddisciplina, iddocente, idsemestre, nome) values(?, ?, ?, ?)");
+                ps = conexao.prepareStatement("insert into turma(iddisciplina, iddocente, idsemestre, nomeTurma) values(?, ?, ?, ?)");
 
             } else {
-                ps = conexao.prepareStatement("UPDATE turma set iddisciplina=?, iddocente=?, idsemestre=?, nome=? where id=?");
+                ps = conexao.prepareStatement("UPDATE turma set iddisciplina=?, iddocente=?, idsemestre=?, nomeTurma=? where id=?");
                 ps.setString(5, turma.getId().toString());
             }
-            ps.setInt(1, turma.getDisciplinaId());
-            ps.setInt(2, turma.getDocenteId());
+            ps.setString(1, turma.getDisciplinaId());
+            ps.setString(2, turma.getDocenteId());
             ps.setString(3,  turma.getSemestreId());
             ps.setString(4, turma.getNomeTurma());
         
@@ -56,10 +56,10 @@ public class TurmaDAO {
             while (resultSet.next()) {
                 Turma turma = new Turma();
                 turma.setId (resultSet.getInt("id"));
-                turma.setNomeTurma(resultSet.getString("nome"));
+                turma.setNomeTurma(resultSet.getString("nomeTurma"));
                 turma.setSemestreId(resultSet.getString("idsemestre"));
-                turma.setDocenteId(resultSet.getInt("iddocente"));
-                turma.setDisciplinaId(resultSet.getInt("iddisciplina"));
+                turma.setDocenteId(resultSet.getString("iddocente"));
+                turma.setDisciplinaId(resultSet.getString("iddisciplina"));
                 
                 turmas.add(turma);
             }

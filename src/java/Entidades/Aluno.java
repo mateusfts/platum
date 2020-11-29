@@ -12,6 +12,9 @@ public class Aluno {
     private String telefone;
     private String idSexo;   
     private String matAluno;
+    private String idsemestre;
+    private String iddisciplina;
+    private String idprofissional;
    
     
     
@@ -87,6 +90,30 @@ public class Aluno {
 
     public void setMatAluno(String matAluno) {
         this.matAluno = matAluno;
+    }
+
+    public String getIdsemestre() {
+        return idsemestre;
+    }
+
+    public void setIdsemestre(String idsemestre) {
+        this.idsemestre = idsemestre;
+    }
+
+    public String getIddisciplina() {
+        return iddisciplina;
+    }
+
+    public void setIddisciplina(String iddisciplina) {
+        this.iddisciplina = iddisciplina;
+    }
+
+    public String getIdprofissional() {
+        return idprofissional;
+    }
+
+    public void setIdprofissional(String idprofissional) {
+        this.idprofissional = idprofissional;
     }
     
    

@@ -2,18 +2,18 @@ package Entidades;
 
 public class Turma {
     /* Atributos */
-    private Integer disciplinaId;
+    private String disciplinaId;
     private String semestreId;
     private Integer Id;
-    private Integer docenteId;
+    private String docenteId;
     private String nomeTurma;
             
     
-    public Integer getDisciplinaId() {
+    public String getDisciplinaId() {
         return disciplinaId;
     }
 
-    public void setDisciplinaId(Integer disciplinaId) {
+    public void setDisciplinaId(String disciplinaId) {
         this.disciplinaId = disciplinaId;
     }
 
@@ -33,11 +33,11 @@ public class Turma {
         this.Id = turmaId;
     }
 
-    public Integer getDocenteId() {
+    public String getDocenteId() {
         return docenteId;
     }
 
-    public void setDocenteId(Integer docenteId) {
+    public void setDocenteId(String docenteId) {
         this.docenteId = docenteId;
     }
 
