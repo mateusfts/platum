@@ -21,19 +21,20 @@ public class AlunoDAO {
         try {
             conexao = Conexao.getConnection();
             if (aluno.getId() == null) {
-                ps = conexao.prepareStatement("INSERT INTO aluno(cpf,nome,datanasc,nomemae,nomepai,sexo,telefone) values(?,?,?,?,?,?,?)");
+                ps = conexao.prepareStatement("INSERT INTO aluno(cpf,nome,datanasc,nomemae,nomepai,sexo,telefone,matAluno) values(?,?,?,?,?,?,?,?)");
 
             } else {
-                ps = conexao.prepareStatement("UPDATE aluno set cpf=?, nome=?, datanasc=?, nomemae=?, nomepai=?, sexo=?, telefone=? where id=?");
-                ps.setString(8, aluno.getId().toString());
+                ps = conexao.prepareStatement("UPDATE aluno set cpf=?, nome=?, datanasc=?, nomemae=?, nomepai=?, sexo=?, telefone=?, matAluno=? where id=?");
+                ps.setString(9, aluno.getId().toString());
             }
             ps.setString(1, aluno.getCpf());
             ps.setString(2, aluno.getNomecompleto());
-            ps.setString(3,  aluno.getDatadenascimento());
+            ps.setString(3, aluno.getDatadenascimento());
             ps.setString(4, aluno.getNomeMae());
             ps.setString(5, aluno.getNomePai());
             ps.setString(6, aluno.getIdSexo());
             ps.setString(7, aluno.getTelefone());
+            ps.setString(8, aluno.getMatAluno());
             
 
         } catch (SQLException ex) {
@@ -65,6 +66,7 @@ public class AlunoDAO {
                 aluno.setNomePai(resultSet.getString("nomepai"));
                 aluno.setNomecompleto(resultSet.getString("nome"));
                 aluno.setTelefone(resultSet.getString("telefone"));
+                aluno.setMatAluno(resultSet.getString("matAluno"));
                 alunos.add(aluno);
             }
             Conexao.closeConnection();

@@ -1,36 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:decorate xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      template="template/layout.xhtml"
-      xmlns:p="http://primefaces.org/ui">
-    
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template/layout.xhtml"
+             xmlns:p="http://primefaces.org/ui">
+
     <ui:define name="content">
 
         <div>
-            <h:form>
+            <p:growl id="msg"/>
+            <h:form id="form">
                 <p:panel header="Registrar Frequencia Nota" style="margin: 10 auto;">
                     <h:panelGrid columns="4" cellpadding="2">
                         <h:outputText value="Docente" />
-                        <p:selectOneMenu  value="#{selectOneMenuView.console}" >
-                            <f:selectItem itemLabel="Select One" itemValue="0" />
-                            <f:selectItem itemLabel="Almir Santiago" itemValue="1" />
-                            <f:selectItem itemLabel="Ewerton Pires" itemValue="2" />
+                        <p:selectOneMenu  value="#{cadastroTurmaBean.turma.docenteId}" >
+                            <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                            <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
                         </p:selectOneMenu>
                         <h:outputText value="Turma"/>
-                        <p:selectOneMenu  value="#{selectOneMenuView.console}" >
-                            <f:selectItem itemLabel="Select One" itemValue="0" />
-                            <f:selectItem itemLabel="FGENOT" itemValue="1" />
-                            <f:selectItem itemLabel="FGEMAT" itemValue="2" />
-                            <f:selectItem itemLabel="DAWNOT" itemValue="3" />
+                        <p:selectOneMenu  value="#{cadastroTurmaBean.turma.id}" >
+                            <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                            <f:selectItems   value="#{registrarFrequenciaBean.turma}" />
                         </p:selectOneMenu>
                         <h:outputText value="Disciplina"/>
-                        <p:selectOneMenu  value="#{selectOneMenuView.console}" >
-                            <f:selectItem itemLabel="Select One" itemValue="0" />
-                            <f:selectItem itemLabel="Matematica" itemValue="1" />
-                            <f:selectItem itemLabel="Ciencias de Dados" itemValue="2" />
+                        <p:selectOneMenu  value="#{cadastroTurmaBean.turma.disciplinaId}" >
+                            <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                            <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
+
                         </p:selectOneMenu>
                         <p:outputLabel value="Data Frequencia" />
                         <p:inputMask id="date" mask="99/99/9999"/>
@@ -38,26 +36,38 @@
                     </h:panelGrid>
                 </p:panel>
                 <p:button  value="Limpar" />
-                <p:button  value="Pesquisar" />
-                <p:button  value="Voltar"/>
-                <p:dataTable var="Frequencia" value="#{registrarFrequencianotaBean.frequencia}">
-                    <f:facet name="header">
-                        Lista de Alunos
-                    </f:facet>
-                    <p:column>
-                        <f:facet name="header">
-                            Matricula
-                        </f:facet>
-                    </p:column>
-                    <p:column headerText="Aluno" >
-                        #{frequencia.Aluno}
-                    </p:column>
-                    <p:column headerText="Status" >
-                        #{frequencia.Status}
-                    </p:column>
                 
+                <p:button  value="Voltar"/>
+                <p:dataTable id="tabela"  var="aluno" editable="true" value="#{CadastroAlunoBean.alunos}">
+
+
+                    <p:column headerText="Matricula" >
+                        <p:cellEditor>
+                            <f:facet name="output"> <h:outputText value="#{aluno.matAluno}"/> </f:facet>
+                            <f:facet name="input"> <p:inputText value="#{aluno.matAluno}" style="width:100%"/> </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="NOME" >
+                        <p:cellEditor>
+                            <f:facet name="output"> <h:outputText value="#{aluno.nomecompleto}"/> </f:facet>
+                            <f:facet name="input"> <p:inputText value="#{aluno.nomecompleto}" style="width:100%"/> </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Presença">
+                    <p:outputLabel />
+                    <p:selectOneMenu  id="presença"  value="">
+                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                        <f:selectItem itemLabel="Presente"  itemValue="1" />
+                        <f:selectItem itemLabel="Ausente" itemValue="0" />
+                    </p:selectOneMenu>
+                    
+                    </p:column>
+                    
 
                 </p:dataTable>
+               
                 <f:facet name="footer">
 
                 </f:facet>

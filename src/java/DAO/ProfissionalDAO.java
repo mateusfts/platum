@@ -1,5 +1,7 @@
 package DAO;
 
+import Entidades.Aluno;
+import Entidades.Disciplina;
 import Entidades.Profissional;
 import Entidades.Usuario;
 import Utils.Conexao;
@@ -7,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfissionalDAO {
     
@@ -41,6 +45,45 @@ public class ProfissionalDAO {
             ps.close();
         } catch (SQLException sqle) {
             throw new Exception("Erro na execução do SQL - rodar query", sqle);
+        }
+    }
+   
+    public List<Profissional> buscar() throws Exception {
+        
+        try {
+            conexao = Conexao.getConnection();
+            PreparedStatement ps = conexao.prepareStatement("select * from profissional");
+            ResultSet resultSet = ps.executeQuery();
+
+            List<Profissional> profissionais = new ArrayList<Profissional>();
+
+            while (resultSet.next()) {
+                Profissional profissional = new Profissional();
+                profissional.setId(resultSet.getInt("id"));
+                profissional.setNome(resultSet.getString("nome"));
+                profissional.setMatricula(resultSet.getString("matricula"));
+                profissional.setCPF(resultSet.getString("cpf"));
+                profissional.setRG(resultSet.getString("rg"));
+                profissional.setDatanascimento(resultSet.getString("datanasc"));
+                profissional.setNomemae(resultSet.getString("nomemae"));
+                profissional.setSexo(resultSet.getString("sexo"));
+                profissional.setTelefone(resultSet.getString("telefone"));
+                profissionais.add(profissional);
+            }
+            Conexao.closeConnection();
+            return profissionais;
+        } catch (SQLException ex) {
+            throw new Exception("Erro na execução do SQL - busca de profissionais", ex);
+        }
+    }
+    public void deletar(Profissional profissional) throws Exception{
+        conexao = Conexao.getConnection();
+        try{
+            ps = conexao.prepareStatement("delete from profissional where id=?");
+            ps.setInt(1, profissional.getId());
+            ps.execute();
+        }catch(SQLException ex){
+            throw new Exception("Não foi possível excluir!" + ex);
         }
     }
         

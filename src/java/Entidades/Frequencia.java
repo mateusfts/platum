@@ -6,22 +6,11 @@ public class Frequencia {
     /* Atributos */
     private Integer id;
     private String status;
-    private Date data;
+    private String data;
     private Integer idTurma;
     private Integer idAluno;
 
-    public Frequencia(Integer id, String status, Date data, Integer idTurma, Integer idAluno) throws Exception {
-        setStatus(status);
-        setData(data);
-        setIdTurma(idTurma);
-        setIdAluno(idAluno);
-    }
     
-    public static void Salvar(Frequencia frequencia) {
-        //chamar o metodo FrequenciaDAO.salvar
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Integer getId() {
         return id;
     }
@@ -34,11 +23,11 @@ public class Frequencia {
         this.status = status;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 

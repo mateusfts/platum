@@ -26,7 +26,7 @@ public class DisciplinaDAO {
 
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                Disciplina d = new Disciplina (resultSet.getInt("id"), resultSet.getString ("codigo"), resultSet.getString("nome"),resultSet.getInt ("cargahoraria"));
+                Disciplina d = new Disciplina (resultSet.getInt("id"), resultSet.getString("nome"));
                 disciplina.add(d);
             }
         }catch(SQLException ex){
@@ -39,7 +39,7 @@ public class DisciplinaDAO {
         PreparedStatement ps;
         try {
             ps = conexao.prepareStatement("insert into `platum`.`disciplina` iddisciplina=?, nomedisciplina=?");//FIXME
-            ps.setString (1, disciplina.getCodigo());
+            ps.setInt (1, disciplina.getId());
             ps.setString (2, disciplina.getNome());
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
@@ -50,4 +50,26 @@ public class DisciplinaDAO {
         }
         return false;
     }    
+    private Connection conexao;
+    public List<Disciplina> buscar() throws Exception {
+        
+        try {
+            conexao = Conexao.getConnection();
+            PreparedStatement ps = conexao.prepareStatement("select * from disciplina");
+            ResultSet resultSet = ps.executeQuery();
+
+            List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
+            while (resultSet.next()) {
+                Disciplina disciplina = new Disciplina();
+                disciplina.setId(resultSet.getInt("id"));
+                disciplina.setNome(resultSet.getString("nome"));
+                disciplinas.add(disciplina);
+            }
+            Conexao.closeConnection();
+            return disciplinas;
+        } catch (SQLException ex) {
+            throw new Exception("Erro na execução do SQL - busca de usuário", ex);
+        }
+    }
 }

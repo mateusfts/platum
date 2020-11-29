@@ -15,29 +15,13 @@ public class Profissional {
     private String nomemae;
     private String sexo;
     private String telefone;
-    
-//    public Profissional (Integer id, String nome, String matricula, String CPF, String RG, Date datanascimento, String nomemae, String sexo,String telefone, String CEP, String logradouro, String numero, String bairro){        
-//        this.nome = nome;
-//        this.matricula = matricula;
-//        this.CPF = CPF;
-//        this.RG = RG;
-//        this.datanascimento = datanascimento;
-//        this.nomemae = nomemae;
-//        this.sexo = sexo;
-//        this.telefone = telefone;
-//       
-//    }
-    
-//    public static void Salvar(Profissional profissional) throws Exception {
-//        ProfissionalDAO.salvar(profissional);
-//    }
-//
-//    public Profissional() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -68,6 +52,10 @@ public class Profissional {
         return RG;
     }
 
+    public void setRG(String RG) {
+        this.RG = RG;
+    }
+
     public String getDatanascimento() {
         return datanascimento;
     }
@@ -96,18 +84,11 @@ public class Profissional {
         return telefone;
     }
 
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setRG(String RG) {
-        this.RG = RG;
-    }
-
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    
 }
 
     

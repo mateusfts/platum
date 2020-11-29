@@ -11,6 +11,7 @@ public class Aluno {
     private String nomePai;
     private String telefone;
     private String idSexo;   
+    private String matAluno;
    
     
     
@@ -80,7 +81,14 @@ public class Aluno {
         this.idSexo = idSexo;
     }
 
+    public String getMatAluno() {
+        return matAluno;
+    }
 
+    public void setMatAluno(String matAluno) {
+        this.matAluno = matAluno;
+    }
+    
    
     
     

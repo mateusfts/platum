@@ -6,46 +6,79 @@
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template/layout.xhtml"
              xmlns:p="http://primefaces.org/ui">
-    
+
     <ui:define name="content">
 
         <p:growl id="msg"/>
         <h:form id="form" >
             
+            <p:panel header="Cadastro Turma" style="margin: 10 auto;" >
+
             <h:panelGrid id="grid" columns="4" cellpadding="2">
-                    
-                    <h:outputText value="Disciplina" />
-                    <p:selectOneMenu  value="#{cadastroTurmaBean.turma.disciplinaId}" >
-                        <f:selectItem itemLabel="Selecione" itemValue="0" />
-                        <f:selectItem itemLabel="Desenvolvimento Web" itemValue="1" />
-                        <f:selectItem itemLabel="Fundamentos de Gestão" itemValue="2" />
-                        <f:selectItem itemLabel="Projeto Integrador 3" itemValue="3" />
-                    </p:selectOneMenu>
-                    
-                    <h:outputText value="Semestre"/>
-                    <p:selectOneMenu  value="#{cadastroTurmaBean.turma.semestreId}" >
-                        <f:selectItem itemLabel="2020.2" itemValue="1" />
-                   </p:selectOneMenu>
-                    
-                    <p:outputLabel value="Nome Turma" />
-                    <p:inputText  value="#{cadastroTurmaBean.turma.nomeTurma}"/>
-                    
-                    <h:outputText value="Docente"/>
-                    <p:selectOneMenu  value="#{cadastroTurmaBean.turma.docenteId}" >
-                        <f:selectItem itemLabel="Selecione" itemValue="0" />
-                    <f:selectItem itemLabel="David Almir Santiago" itemValue="1" />
-                        <f:selectItem itemLabel="Antonio Carrera" itemValue="2" />
-                    </p:selectOneMenu>
-                                        
-                </h:panelGrid>
-            
-            <p:button  value="Limpar"/>
+
+                <h:outputText value="Disciplina" />
+                <p:selectOneMenu  value="#{cadastroTurmaBean.turma.disciplinaId}" >
+                    <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                    <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
+
+                </p:selectOneMenu>
+
+                <h:outputText value="Semestre"/>
+                <p:inputMask mask="9999.9" value="#{cadastroTurmaBean.turma.semestreId}"/>
+
+
+                <p:outputLabel value="Nome Turma" />
+                <p:inputText  value="#{cadastroTurmaBean.turma.nomeTurma}"/>
+
+                <h:outputText value="Docente"/>
+                <p:selectOneMenu  value="#{cadastroTurmaBean.turma.docenteId}" >
+                    <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                    <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
+                </p:selectOneMenu>
+
+                <p:button  value="Limpar"/>
                 <p:commandButton value="Cadastrar" update="grid" action="#{cadastroTurmaBean.salvar()}" />
-            <p:button  value="Voltar"/>
-            
+                <p:button  value="Voltar"/>
+
+            </h:panelGrid>
+            </p:panel>
+
+
+            <p:dataTable id="tabela"  var="turma" editable="true" value="#{cadastroTurmaBean.turmas}">
+
+
+                <p:ajax event="rowEdit" listener="#{cadastroTurmaBean.onRowEdit}"/>                
+                <p:ajax event="rowEditCancel" listener="#{cadastroTurmaBean.onRowCancel}"/>
+
+                <p:column headerText="Deletar" >
+                    <p:commandButton value="Deletar"   id="delete" action="#{cadastroTurmaBean.deletar(turma)}" process="tabela"/>
+                </p:column>
+
+<!--                <p:column headerText="Id" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{turma.id}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{turma.id}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>-->
+
+                <p:column headerText="NOME" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{turma.nomeTurma}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{turma.nomeTurma}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Editar" >
+                    <p:rowEditor/>
+                </p:column>
+
+
+
+            </p:dataTable>
+
         </h:form>
-        
+
     </ui:define>
-               
+
 </ui:decorate>
 

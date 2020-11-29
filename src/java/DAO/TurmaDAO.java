@@ -22,15 +22,15 @@ public class TurmaDAO {
         try {
             conexao = Conexao.getConnection();
             if (turma.getId() == null) {
-                ps = conexao.prepareStatement("insert into turma(iddisciplina, iddocente, idsemestre, nometurma) values(?, ?, ?, ?)");
+                ps = conexao.prepareStatement("insert into turma(iddisciplina, iddocente, idsemestre, nome) values(?, ?, ?, ?)");
 
             } else {
-                ps = conexao.prepareStatement("update set turma(iddisciplina=?, iddocente=?, idsemestre=?, nometurma=? where id=?)");
-                ps.setString(8, turma.getId().toString());
+                ps = conexao.prepareStatement("UPDATE turma set iddisciplina=?, iddocente=?, idsemestre=?, nome=? where id=?");
+                ps.setString(5, turma.getId().toString());
             }
             ps.setInt(1, turma.getDisciplinaId());
             ps.setInt(2, turma.getDocenteId());
-            ps.setInt(3,  turma.getSemestreId());
+            ps.setString(3,  turma.getSemestreId());
             ps.setString(4, turma.getNomeTurma());
         
             
@@ -43,6 +43,40 @@ public class TurmaDAO {
             ps.close();
         } catch (SQLException sqle) {
             throw new Exception("Erro na execução do SQL - rodar query", sqle);
+        }
+    }
+     public List<Turma> buscar() throws Exception {
+        try {
+            conexao = Conexao.getConnection();
+            PreparedStatement ps = conexao.prepareStatement("select * from turma");
+            ResultSet resultSet = ps.executeQuery();
+
+            List<Turma> turmas = new ArrayList<Turma>();
+
+            while (resultSet.next()) {
+                Turma turma = new Turma();
+                turma.setId (resultSet.getInt("id"));
+                turma.setNomeTurma(resultSet.getString("nome"));
+                turma.setSemestreId(resultSet.getString("idsemestre"));
+                turma.setDocenteId(resultSet.getInt("iddocente"));
+                turma.setDisciplinaId(resultSet.getInt("iddisciplina"));
+                
+                turmas.add(turma);
+            }
+            Conexao.closeConnection();
+            return turmas;
+        } catch (SQLException ex) {
+            throw new Exception("Erro na execução do SQL - busca de tumas", ex);
+        }
+    }
+     public void deletar(Turma turma) throws Exception{
+        conexao = Conexao.getConnection();
+        try{
+            ps = conexao.prepareStatement("delete from turma where id=?");
+            ps.setInt(1, turma.getId()); 
+            ps.execute();
+        }catch(Exception ex){
+            throw new Exception("Não foi possível excluir!" + ex);
         }
     }
 }

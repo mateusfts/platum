@@ -3,21 +3,14 @@ package Entidades;
 
 public final class Disciplina {
     /* Atributos */
-    private Integer id;
-    private String codigo;
+    private Integer id;    
     private String nome;
-    private Integer cargaHoraria;
-    
-    
-    public Disciplina (String nome) throws Exception{
-        setNome(nome);
+
+    public Disciplina() {
     }
 
-    public Disciplina(int id, String codigo, String nome, Integer cargahoraria) {
-        setId(id);
-        setCodigo(codigo);
-        setNome(nome);
-        setCargahoraria (cargahoraria);
+    public Disciplina(int aInt, String string) {
+        
     }
 
     public Integer getId() {
@@ -28,14 +21,6 @@ public final class Disciplina {
         this.id = id;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -43,12 +28,6 @@ public final class Disciplina {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public Integer getCargahoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargahoraria(Integer cargahoraria) {
-        this.cargaHoraria = cargahoraria;
-    }
+      
+   
 }

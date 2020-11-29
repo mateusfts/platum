@@ -3,7 +3,7 @@ package Entidades;
 public class Turma {
     /* Atributos */
     private Integer disciplinaId;
-    private Integer semestreId;
+    private String semestreId;
     private Integer Id;
     private Integer docenteId;
     private String nomeTurma;
@@ -17,11 +17,11 @@ public class Turma {
         this.disciplinaId = disciplinaId;
     }
 
-    public Integer getSemestreId() {
+    public String getSemestreId() {
         return semestreId;
     }
 
-    public void setSemestreId(Integer semestreId) {
+    public void setSemestreId(String semestreId) {
         this.semestreId = semestreId;
     }
 
@@ -48,4 +48,9 @@ public class Turma {
     public void setNomeTurma(String nomeTurma) {
         this.nomeTurma = nomeTurma;
     }
+
+    public void setId(Integer Id) {
+        this.Id = Id;
+    }
+    
 }
