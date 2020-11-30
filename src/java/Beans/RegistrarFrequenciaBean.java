@@ -46,6 +46,7 @@ public class RegistrarFrequenciaBean implements Serializable {
     }
 
     public void salvar() {
+        
         try {
             frequenciaDAO.salvar(frequencia);
             addMessage("Registrado com Sucesso!");
@@ -54,8 +55,13 @@ public class RegistrarFrequenciaBean implements Serializable {
             Logger.getLogger(CadastroProfissionalBean.class.getName()).log(Level.SEVERE, null, ex);
            return;
         }
+        
+        atualizarComponente("form");
         frequencia = new Frequencia();
-
+    }
+    
+    public void teste (){
+        addMessage("teste");
     }
     public void buscarTurma() {
         try {
@@ -112,7 +118,6 @@ public class RegistrarFrequenciaBean implements Serializable {
     public void setFrequenciaDAO(FrequenciaDAO frequenciaDAO) {
         this.frequenciaDAO = frequenciaDAO;
     }
-
     
     
 }

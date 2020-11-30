@@ -5,13 +5,18 @@ public class Frequencia {
     private Integer id;
     private String status;
     private String data;
-    private Integer idTurma;
-    private String idAluno;
-    private Integer idDisciplina;
+    private String idTurma;
+    private String nomeAluno;
+    private String idDisciplina;
+    private String matricula;
+    private String nomeDocente;
 
-    
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStatus() {
@@ -30,28 +35,45 @@ public class Frequencia {
         this.data = data;
     }
 
-    public Integer getIdTurma() {
+    public String getIdTurma() {
         return idTurma;
     }
 
-    public void setIdTurma(Integer idTurma) {
+    public void setIdTurma(String idTurma) {
         this.idTurma = idTurma;
     }
 
-    public String getIdAluno() {
-        return idAluno;
+    public String getNomeAluno() {
+        return nomeAluno;
     }
 
-    public void setIdAluno(String idAluno) {
-        this.idAluno = idAluno;
+    public void setNomeAluno(String nomeAluno) {
+        this.nomeAluno = nomeAluno;
     }
 
-    public Integer getIdDisciplina() {
+    public String getIdDisciplina() {
         return idDisciplina;
     }
 
-    public void setIdDisciplina(Integer idDisciplina) {
+    public void setIdDisciplina(String idDisciplina) {
         this.idDisciplina = idDisciplina;
     }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getNomeDocente() {
+        return nomeDocente;
+    }
+
+    public void setNomeDocente(String nomeDocente) {
+        this.nomeDocente = nomeDocente;
+    }
+    
     
 }

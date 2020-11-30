@@ -20,7 +20,7 @@ public class RelatorioDAO {
     public List<Relatorio> buscar() throws Exception {
         try {
             conexao = Conexao.getConnection();
-            PreparedStatement ps = conexao.prepareStatement("SELECT * from aluno");
+            PreparedStatement ps = conexao.prepareStatement("SELECT *  FROM aluno WHERE idprofissional = \"Leandro\" AND iddisciplina = \"Estrutura de Dados\"");
             ResultSet resultSet = ps.executeQuery();
 
             List<Relatorio> relatorios = new ArrayList<Relatorio>();

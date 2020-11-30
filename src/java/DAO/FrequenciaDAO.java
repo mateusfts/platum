@@ -16,17 +16,19 @@ public class FrequenciaDAO {
         try {
             conexao = Conexao.getConnection();
             if (frequencia.getId() == null) {
-                ps = conexao.prepareStatement("insert into frequencia(status, data, idturma, idaluno, iddisciplina) values(?, ?, ?, ?, ?)");
+                ps = conexao.prepareStatement("insert into frequencia(status, data, idturma, nomealuno, iddisciplina, matriculaAluno, nomeDocente) values(?, ?, ?, ?, ?, ?, ?)");
 
             } else {
-                ps = conexao.prepareStatement("UPDATE frequencia set status=?, data=?, idturma=?, idaluno=?, iddisciplina=?   where id=?");
-                ps.setString(6, frequencia.getId().toString());
+                ps = conexao.prepareStatement("UPDATE frequencia set status=?, data=?, idturma=?, idaluno=?, iddisciplina=?, matriculaAluno=?, nomeDocente=?   where id=?");
+                ps.setString(8, frequencia.getId().toString());
             }
             ps.setString(1, frequencia.getStatus());
             ps.setString(2, frequencia.getData());
-            ps.setInt(3,  frequencia.getIdTurma());
-            ps.setString(4, frequencia.getIdAluno());
-            ps.setInt(5, frequencia.getIdDisciplina());
+            ps.setString(3,  frequencia.getIdTurma());
+            ps.setString(4, frequencia.getNomeAluno());
+            ps.setString(5, frequencia.getIdDisciplina());
+            ps.setString(6, frequencia.getMatricula());
+            ps.setString(7, frequencia.getNomeDocente());
             
         } catch (SQLException ex) {
             throw new Exception("Erro na execução do SQL - registro", ex);

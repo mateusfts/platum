@@ -9,18 +9,19 @@
 
     <ui:define name="content">
 
-        <div>
+      
             <p:growl id="msg"/>
             <h:form id="form">
+                <h:panelGrid  columns="1" cellpadding="4">
                 <p:panel header="Registrar Frequencia Nota" style="margin: 10 auto;">
-                    <h:panelGrid columns="4" cellpadding="2">
+                    
                         <h:outputText value="Docente" />
-                        <p:selectOneMenu  value="#{cadastroTurmaBean.turma.docenteId}" >
+                        <p:selectOneMenu  value="#{registrarFrequenciaBean.frequencia.nomeDocente}" >
                             <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
                             <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
                         </p:selectOneMenu>
                         <h:outputText value="Turma"/>
-                        <p:selectOneMenu  value="#{cadastroTurmaBean.turma.id}" >
+                        <p:selectOneMenu  value="#{registrarFrequenciaBean.frequencia.idTurma}" >
                             <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
                             <f:selectItems   value="#{registrarFrequenciaBean.turma}" />
                         </p:selectOneMenu>
@@ -32,26 +33,24 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="Data Frequencia" />
                         <p:inputMask id="date" mask="99/99/9999" value="#{registrarFrequenciaBean.frequencia.data}"/>
-
-                    </h:panelGrid>
+                    
                 </p:panel>
-                <p:button  value="Limpar" />
                 
-                <p:button  value="Voltar"/>
+                
+                         
                 <p:dataTable id="tabela"  var="aluno" editable="true" value="#{CadastroAlunoBean.alunos}">
-
-
+                    
                     <p:column headerText="Matricula" >
                         <p:cellEditor>
                             <f:facet name="output"> <h:outputText value="#{aluno.matAluno}"/> </f:facet>
-                            <f:facet name="input"> <p:inputText value="#{aluno.matAluno}" style="width:100%"/> </f:facet>
+                            <f:facet name="input"> <p:inputText value="#{registrarFrequenciaBean.frequencia.matricula}" style="width:100%"/> </f:facet>
                         </p:cellEditor>
                     </p:column>
 
                     <p:column headerText="NOME" >
                         <p:cellEditor>
                             <f:facet name="output"> <h:outputText value="#{aluno.nomecompleto}"/> </f:facet>
-                            <f:facet name="input"> <p:inputText value="#{aluno.nomecompleto}" style="width:100%"/> </f:facet>
+                            <f:facet name="input"> <p:inputText value="#{registrarFrequenciaBean.frequencia.nomeAluno}" style="width:100%"/> </f:facet>
                         </p:cellEditor>
                     </p:column>
                     
@@ -69,11 +68,10 @@
                     
 
                 </p:dataTable>
-                <p:commandButton value="Registrar" action="#{registrarFrequenciaBean.salvar()}"/>
-                <f:facet name="footer">
-
-                </f:facet>
+                     <p:commandButton value="Registrar" action="#{registrarFrequenciaBean.salvar()}"/>
+              </h:panelGrid>
+                
             </h:form>
-        </div>
+        
     </ui:define>   
 </ui:decorate>
