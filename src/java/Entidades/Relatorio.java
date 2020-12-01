@@ -2,7 +2,7 @@ package Entidades;
 
 public class Relatorio {
     /* Atributos */
-    private String idsemestre;
+    private String idturma;
     private String iddisciplina;
     private String iddocente;
     
@@ -12,12 +12,12 @@ public class Relatorio {
 //       setIdDocente (iddocente) ;
 //    }
 
-    public String getIdsemestre() {
-        return idsemestre;
+    public String getIdturma() {
+        return idturma;
     }
 
-    public void setIdsemestre(String idsemestre) {
-        this.idsemestre = idsemestre;
+    public void setIdturma(String idturma) {
+        this.idturma = idturma;
     }
 
     public String getIddisciplina() {

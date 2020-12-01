@@ -1,6 +1,7 @@
 package Beans;
 
 import DAO.DisciplinaDAO;
+import DAO.ProfissionalDAO;
 import DAO.RelatorioDAO;
 import Entidades.Disciplina;
 import Entidades.Profissional;
@@ -25,6 +26,8 @@ public class RelatorioBean implements Serializable {
     String semestre,disciplina,docente;
     DisciplinaDAO disciplinaDAO;
     List<String> disc;
+    List<String> prof;
+    ProfissionalDAO profissionalDAO;
             
     public RelatorioBean() {
     
@@ -64,19 +67,19 @@ public class RelatorioBean implements Serializable {
             addMessage("Erro ao realizar a busca de disciplinas!");
         }
     }
-//    public void buscarDocente() {
-//        try {
-//            List<Profissional> profissionais = profissionalDAO.buscar();
-//            profissional = new ArrayList<String>();
-//            for (int i = 0; i < profissionais.size(); i++) {
-//                Profissional d = profissionais.get(i);
-//                String nome = d.getNome();
-//                profissional.add(nome);
-//            }
-//        } catch (Exception ex) {
-//            addMessage("Erro ao realizar a busca de disciplinas!");
-//        }
-//    }
+    public void buscarDocente() {
+        try {
+            List<Profissional> profissionais = profissionalDAO.buscar();
+            prof = new ArrayList<String>();
+            for (int i = 0; i < profissionais.size(); i++) {
+                Profissional d = profissionais.get(i);
+                String nome = d.getNome();
+                prof.add(nome);
+            }
+        } catch (Exception ex) {
+            addMessage("Erro ao realizar a busca de disciplinas!");
+        }
+    }
     
     public void addMessage(String msg) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);

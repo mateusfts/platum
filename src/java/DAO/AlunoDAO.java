@@ -21,10 +21,10 @@ public class AlunoDAO {
         try {
             conexao = Conexao.getConnection();
             if (aluno.getId() == null) {
-                ps = conexao.prepareStatement("INSERT INTO aluno(cpf,nome,datanasc,nomemae,nomepai,sexo,telefone,matAluno,idsemestre,iddisciplina,idprofissional) values(?,?,?,?,?,?,?,?,?,?,?)");
+                ps = conexao.prepareStatement("INSERT INTO aluno(cpf,nome,datanasc,nomemae,nomepai,sexo,telefone,matAluno,idturma,iddisciplina,idprofissional) values(?,?,?,?,?,?,?,?,?,?,?)");
 
             } else {
-                ps = conexao.prepareStatement("UPDATE aluno set cpf=?, nome=?, datanasc=?, nomemae=?, nomepai=?, sexo=?, telefone=?, matAluno=?,  idsemestre=?,iddisciplina=?,idprofissional=? where id=?");
+                ps = conexao.prepareStatement("UPDATE aluno set cpf=?, nome=?, datanasc=?, nomemae=?, nomepai=?, sexo=?, telefone=?, matAluno=?,  idturma=?,iddisciplina=?,idprofissional=? where id=?");
                 ps.setString(12, aluno.getId().toString());
             }
             ps.setString(1, aluno.getCpf());
@@ -35,7 +35,7 @@ public class AlunoDAO {
             ps.setString(6, aluno.getIdSexo());
             ps.setString(7, aluno.getTelefone());
             ps.setString(8, aluno.getMatAluno());
-            ps.setString(9, aluno.getIdsemestre());
+            ps.setString(9, aluno.getIdturma());
             ps.setString(10, aluno.getIddisciplina());
             ps.setString(11, aluno.getIdprofissional());
 
@@ -69,7 +69,7 @@ public class AlunoDAO {
                 aluno.setNomecompleto(resultSet.getString("nome"));
                 aluno.setTelefone(resultSet.getString("telefone"));
                 aluno.setMatAluno(resultSet.getString("matAluno"));
-                aluno.setIdsemestre(resultSet.getString("idsemestre"));
+                aluno.setIdturma(resultSet.getString("idturma"));
                 aluno.setIddisciplina(resultSet.getString("iddisciplina"));
                 aluno.setIdprofissional(resultSet.getString("idprofissional"));
                 alunos.add(aluno);

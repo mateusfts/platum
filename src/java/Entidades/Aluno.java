@@ -12,7 +12,7 @@ public class Aluno {
     private String telefone;
     private String idSexo;   
     private String matAluno;
-    private String idsemestre;
+    private String idturma;
     private String iddisciplina;
     private String idprofissional;
    
@@ -92,12 +92,12 @@ public class Aluno {
         this.matAluno = matAluno;
     }
 
-    public String getIdsemestre() {
-        return idsemestre;
+    public String getIdturma() {
+        return idturma;
     }
 
-    public void setIdsemestre(String idsemestre) {
-        this.idsemestre = idsemestre;
+    public void setIdturma(String idsemestre) {
+        this.idturma = idsemestre;
     }
 
     public String getIddisciplina() {

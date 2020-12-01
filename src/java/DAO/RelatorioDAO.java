@@ -27,7 +27,7 @@ public class RelatorioDAO {
 
             while (resultSet.next()) {
                 Relatorio relatorio = new Relatorio();
-                relatorio.setIdsemestre(resultSet.getString("idsemestre"));
+                relatorio.setIdturma(resultSet.getString("idturma"));
                 relatorio.setIddisciplina(resultSet.getString("iddisciplina"));
                 relatorio.setIddocente(resultSet.getString("idprofissional"));
                 
