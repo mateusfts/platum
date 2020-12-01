@@ -5,6 +5,8 @@ public class Relatorio {
     private String idturma;
     private String iddisciplina;
     private String iddocente;
+    private String nomeAluno;
+    private String matricula;
     
 //    public Registro (Integer idsemestre, Integer iddisciplina, Integer iddocente) throws Exception {
 //       setIdSemestre(idsemestre) ;
@@ -36,7 +38,22 @@ public class Relatorio {
         this.iddocente = iddocente;
     }
 
-    
+    public String getNomeAluno() {
+        return nomeAluno;
+    }
+
+    public void setNomeAluno(String nomeAluno) {
+        this.nomeAluno = nomeAluno;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+        
     
     
 }

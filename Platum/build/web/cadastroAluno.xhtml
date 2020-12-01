@@ -50,8 +50,8 @@
                         <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
                         <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
                     </p:selectOneMenu>
-                    <h:outputText value="Turma"/>
-                    <p:selectOneMenu  value="#{CadastroAlunoBean.aluno.idturma}" >
+                    <h:outputText value="Semestre"/>
+                    <p:selectOneMenu  value="#{CadastroAlunoBean.aluno.idsemestre}" >
                         <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
                         <f:selectItems   value="#{registrarFrequenciaBean.turma}" />
                     </p:selectOneMenu>

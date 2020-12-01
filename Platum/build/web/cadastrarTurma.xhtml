@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template/layout.xhtml"
+             xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+        <p:growl id="msg"/>
+        <h:form id="form" >
+            
+            <p:panel header="Cadastro Turma" style="margin: 10 auto;" >
+
+            <h:panelGrid id="grid" columns="4" cellpadding="2">
+
+                <h:outputText value="Disciplina" />
+                <p:selectOneMenu  value="#{cadastroTurmaBean.turma.disciplinaId}" >
+                    <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                    <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
+
+                </p:selectOneMenu>
+
+                <h:outputText value="Semestre"/>
+                <p:inputMask mask="9999.9" value="#{cadastroTurmaBean.turma.semestreId}"/>
+
+
+                <p:outputLabel value="Nome Turma" />
+                <p:inputText  value="#{cadastroTurmaBean.turma.nomeTurma}"/>
+
+                <h:outputText value="Docente"/>
+                <p:selectOneMenu  value="#{cadastroTurmaBean.turma.docenteId}" >
+                    <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                    <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
+                </p:selectOneMenu>
+
+                <p:button  value="Limpar"/>
+                <p:commandButton value="Cadastrar" update="grid" action="#{cadastroTurmaBean.salvar()}" />
+                <p:button  value="Voltar"/>
+
+            </h:panelGrid>
+            </p:panel>
+
+
+            <p:dataTable id="tabela"  var="turma" editable="true" value="#{cadastroTurmaBean.turmas}">
+
+
+                <p:ajax event="rowEdit" listener="#{cadastroTurmaBean.onRowEdit}"/>                
+                <p:ajax event="rowEditCancel" listener="#{cadastroTurmaBean.onRowCancel}"/>
+
+                <p:column headerText="Deletar" >
+                    <p:commandButton value="Deletar"   id="delete" action="#{cadastroTurmaBean.deletar(turma)}" process="tabela"/>
+                </p:column>
+
+<!--                <p:column headerText="Id" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{turma.id}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{turma.id}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>-->
+
+                <p:column headerText="NOME" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{turma.nomeTurma}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{turma.nomeTurma}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Editar" >
+                    <p:rowEditor/>
+                </p:column>
+
+
+
+            </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:decorate>
+

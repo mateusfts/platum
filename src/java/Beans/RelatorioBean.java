@@ -50,10 +50,13 @@ public class RelatorioBean implements Serializable {
     public void pesquisar(){
         try{
                 relatorios = relatorioDAO.buscar(relatorio);
+                addMessage("Consulta realizada com sucesso!");
         }catch(Exception ex){
             
                 addMessage("Erro ao realizar consulta!");
         }
+        atualizarComponente("form");
+        relatorio = new Relatorio();
     }
     public void buscarDisciplina() {
         try {
@@ -67,6 +70,7 @@ public class RelatorioBean implements Serializable {
         } catch (Exception ex) {
             addMessage("Erro ao realizar a busca de disciplinas!");
         }
+        atualizarComponente("form");
     }
     public void buscarDocente() {
         try {

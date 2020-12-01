@@ -21,7 +21,7 @@ public class RelatorioDAO {
     public List<Relatorio> buscar(Relatorio rela) throws Exception {
         try {
             conexao = Conexao.getConnection();
-            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM aluno WHERE (idprofissional , iddisciplina , idturma ) values(?,?,?) ");
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM aluno WHERE idprofissional = ? and iddisciplina = ? and idturma = ?");
             
             ps.setString(1, rela.getIddocente());
             ps.setString(2, rela.getIddisciplina());
@@ -35,6 +35,8 @@ public class RelatorioDAO {
                 relatorio.setIdturma(resultSet.getString("idturma"));
                 relatorio.setIddisciplina(resultSet.getString("iddisciplina"));
                 relatorio.setIddocente(resultSet.getString("idprofissional"));
+                relatorio.setNomeAluno(resultSet.getString("nome"));
+                relatorio.setMatricula(resultSet.getString("matAluno"));
                 
                 relatorios.add(relatorio);
             }

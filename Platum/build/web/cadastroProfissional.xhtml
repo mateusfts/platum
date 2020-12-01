@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template/layout.xhtml"
+             xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+        <div> 
+            <p:growl id="msg"/>
+            <h:form id="form">
+                <p:panel header="Cadastro Profissional" style="margin: 10 auto;" >
+
+
+                    <h:panelGrid id="grid" columns="4" cellpadding="2">
+
+                        <p:outputLabel  value="CPF"  />
+                        <p:inputMask id="CPF" mask="999.999.999-99" value="#{cadastroProfissionalBean.profissional.CPF}"/>
+
+                        <p:outputLabel value="RG" />
+                        <p:inputMask id= "RG" mask="99999999-99" value="#{cadastroProfissionalBean.profissional.RG}" />
+
+                        <p:outputLabel  value="Matricula" />
+                        <p:inputText id="Matricula" value="#{cadastroProfissionalBean.profissional.matricula}"/>
+
+                        <p:outputLabel  value="Nome Completo" />
+                        <p:inputText id="NomeCompleto" value="#{cadastroProfissionalBean.profissional.nome}"/>
+
+                        <p:outputLabel  value="Data Nascimento: " />
+                        <p:inputMask id="date"  mask="99/99/9999" value="#{cadastroProfissionalBean.profissional.datanascimento}"/>
+
+                        <p:outputLabel  value="Nome da Mãe:" />
+                        <p:inputText id="nomeMae" value="#{cadastroProfissionalBean.profissional.nomemae}"/>
+
+                        <p:outputLabel  value="Sexo:" />
+                        <p:inputText id="sexo" value="#{cadastroProfissionalBean.profissional.sexo}"/>
+
+                        <p:outputLabel  value="Telefone: " />
+                        <p:inputMask id="telefone" mask="(99)99999-9999" value="#{cadastroProfissionalBean.profissional.telefone}"/>
+
+                        <p:button  value="Limpar"/>
+                        <p:commandButton value="Cadastrar" update="grid" action="#{cadastroProfissionalBean.salvar()}" />
+                        <p:button  value="Voltar"/>
+
+                    </h:panelGrid>
+
+                </p:panel>
+                
+                <p:dataTable id="tabela"  var="profissional" editable="true" value="#{cadastroProfissionalBean.profissionais}">
+                
+                
+                <p:ajax event="rowEdit" listener="#{cadastroProfissionalBean.onRowEdit}"/>                
+                <p:ajax event="rowEditCancel" listener="#{cadastroProfissionalBean.onRowCancel}"/>
+                
+                <p:column headerText="Deletar" >
+                    <p:commandButton value="Deletar"   id="delete" action="#{cadastroProfissionalBean.deletar(profissional)}" process="tabela"/>
+                </p:column>
+                
+                <p:column headerText="Matricula" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{profissional.matricula}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{profissional.matricula}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="NOME" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{profissional.nome}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{profissional.nome}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                <p:column headerText="Editar" >
+                    <p:rowEditor/>
+                </p:column>
+                
+            </p:dataTable>
+                
+
+            </h:form>
+        </div>
+    </ui:define>
+
+
+</ui:decorate>

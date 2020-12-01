@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="template/layout.xhtml"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+
+        <div>
+            <p:growl id="msg"/>
+            <h:form id="form">
+            <p:panel header="Registrar Frequencia Nota" style="margin: 10 auto;">
+                <h:panelGrid columns="4" cellpadding="2">
+                    <h:outputText value="Turma"/>
+                    <p:selectOneMenu  value="#{RelatorioBean.relatorio.idturma}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{registrarFrequenciaBean.turma}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Disciplina"/>
+                    <p:selectOneMenu  value="#{RelatorioBean.relatorio.iddisciplina}" >
+                    <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                    <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
+
+                </p:selectOneMenu>
+                    <h:outputText value="Docente" />
+                    <p:selectOneMenu  value="#{RelatorioBean.relatorio.iddocente}" >
+                    <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                    <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
+                </p:selectOneMenu>
+                    <p:button  value="Limpar" />
+                    <p:commandButton value="Pesquisar" action="#{RelatorioBean.pesquisar()}"/> 
+                    <p:button  value="Voltar" />
+                </h:panelGrid>
+                
+                <p:dataTable id="tabela"  var="relatorio" editable="true" value="#{RelatorioBean.relatorios}">
+
+                <p:column headerText="Turma" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{relatorio.idturma}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{relatorio.idturma}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Disciplina" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{relatorio.iddisciplina}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{relatorio.iddisciplina}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                    
+                    <p:column headerText="Docente" >
+                    <p:cellEditor>
+                        <f:facet name="output"> <h:outputText value="#{relatorio.iddocente}"/> </f:facet>
+                        <f:facet name="input"> <p:inputText value="#{relatorio.iddocente}" style="width:100%"/> </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                
+
+            </p:dataTable>
+                
+            </p:panel>
+        </h:form>
+        </div>
+    </ui:define>
+               
+</ui:decorate>
