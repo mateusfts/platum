@@ -17,10 +17,10 @@ public class RelatorioDAO {
     PreparedStatement ps;
     
     
-    public List<Relatorio> buscar() throws Exception {
+    public List<Relatorio> buscar(String semestre,String disciplina, String docente) throws Exception {
         try {
             conexao = Conexao.getConnection();
-            PreparedStatement ps = conexao.prepareStatement("SELECT *  FROM aluno WHERE idprofissional = \"Leandro\" AND iddisciplina = \"Estrutura de Dados\"");
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM aluno WHERE idprofissional = \"Leandro\" AND iddisciplina = \"Estrutura de Dados\"");
             ResultSet resultSet = ps.executeQuery();
 
             List<Relatorio> relatorios = new ArrayList<Relatorio>();

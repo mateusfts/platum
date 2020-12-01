@@ -1,7 +1,9 @@
 package Beans;
 
+import DAO.AlunoDAO;
 import DAO.FrequenciaDAO;
 import DAO.TurmaDAO;
+import Entidades.Aluno;
 import Entidades.Frequencia;
 import Entidades.Profissional;
 import Entidades.Turma;
@@ -31,38 +33,52 @@ public class RegistrarFrequenciaBean implements Serializable {
     TurmaDAO turmaDAO;
     Frequencia frequencia;
     FrequenciaDAO frequenciaDAO;
+    private List<Aluno> alunos;
+    AlunoDAO alunoDAO;
+    List<Frequencia> frequencias;
     
-   
     public RegistrarFrequenciaBean() {
-        
+        frequencias = new ArrayList<Frequencia>();
         turmaDAO = new TurmaDAO();
         frequencia = new Frequencia();
         frequenciaDAO = new FrequenciaDAO();
+        alunos = null;
+        alunoDAO = new AlunoDAO();
     }
-
+    
     @PostConstruct
     public void init() {
         buscarTurma();
+        buscar();
     }
-
+    
     public void salvar() {
         
         try {
-            frequenciaDAO.salvar(frequencia);
+            Frequencia freq;
+            for (int i = 0; i < frequencias.size(); i++) {
+                freq = new Frequencia();
+                freq.setData(frequencia.getData());
+                freq.setIdDisciplina(frequencia.getIdDisciplina());
+                freq.setNomeDocente(frequencia.getNomeDocente());
+                freq.setIdTurma(frequencia.getIdTurma());
+                freq.setNomeAluno(frequencias.get(i).getNomeAluno());
+                freq.setMatricula(frequencias.get(i).getMatricula());
+                freq.setStatus(frequencias.get(i).getStatus());
+                frequenciaDAO.salvar(freq);
+            }
+            
             addMessage("Registrado com Sucesso!");
         } catch (Exception ex) {
             addMessage("Erro ao registrar!");
             Logger.getLogger(CadastroProfissionalBean.class.getName()).log(Level.SEVERE, null, ex);
-           return;
+            return;
         }
         
         atualizarComponente("form");
         frequencia = new Frequencia();
     }
     
-    public void teste (){
-        addMessage("teste");
-    }
     public void buscarTurma() {
         try {
             List<Turma> turmas = turmaDAO.buscar();
@@ -76,48 +92,82 @@ public class RegistrarFrequenciaBean implements Serializable {
             addMessage("Erro ao realizar a busca de disciplinas!");
         }
     }
-
+    
+    public void buscar() {
+        try {
+            setAlunos(alunoDAO.buscar());
+            for (int i = 0; i < alunos.size(); i++) {
+                frequencias.add(new Frequencia(alunos.get(i).getNomecompleto(), alunos.get(i).getMatAluno()));
+            }
+        } catch (Exception ex) {
+            addMessage("Erro ao realizar a busca de Alunos!");
+        }
+    }
+    
     public void addMessage(String msg) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         atualizarComponente("msg"); // atualiza o componente de mensagens 
     }
-
+    
     public void atualizarComponente(String id) {
         RequestContext.getCurrentInstance().update(id);
     }
-
+    
     public List<String> getTurma() {
         return turma;
     }
-
+    
     public void setTurma(List<String> turma) {
         this.turma = turma;
     }
-
+    
     public TurmaDAO getTurmaDAO() {
         return turmaDAO;
     }
-
+    
     public void setTurmaDAO(TurmaDAO turmaDAO) {
         this.turmaDAO = turmaDAO;
     }
-
+    
     public Frequencia getFrequencia() {
         return frequencia;
     }
-
+    
     public void setFrequencia(Frequencia frequencia) {
         this.frequencia = frequencia;
     }
-
+    
     public FrequenciaDAO getFrequenciaDAO() {
         return frequenciaDAO;
     }
-
+    
     public void setFrequenciaDAO(FrequenciaDAO frequenciaDAO) {
         this.frequenciaDAO = frequenciaDAO;
     }
     
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+    
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+    
+    public AlunoDAO getAlunoDAO() {
+        return alunoDAO;
+    }
+    
+    public void setAlunoDAO(AlunoDAO alunoDAO) {
+        this.alunoDAO = alunoDAO;
+    }
+    
+    public List<Frequencia> getFrequencias() {
+        return frequencias;
+    }
+    
+    public void setFrequencias(List<Frequencia> frequencias) {
+        this.frequencias = frequencias;
+    }
     
 }

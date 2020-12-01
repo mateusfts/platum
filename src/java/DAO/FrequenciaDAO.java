@@ -24,7 +24,7 @@ public class FrequenciaDAO {
             }
             ps.setString(1, frequencia.getStatus());
             ps.setString(2, frequencia.getData());
-            ps.setString(3,  frequencia.getIdTurma());
+            ps.setString(3, frequencia.getIdTurma());
             ps.setString(4, frequencia.getNomeAluno());
             ps.setString(5, frequencia.getIdDisciplina());
             ps.setString(6, frequencia.getMatricula());

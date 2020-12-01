@@ -10,6 +10,12 @@ public class Frequencia {
     private String idDisciplina;
     private String matricula;
     private String nomeDocente;
+    
+    public Frequencia(){}
+    public Frequencia(String nomeAluno, String matricula){
+        setNomeAluno(nomeAluno);
+        setMatricula(matricula);
+    }
 
     public Integer getId() {
         return id;

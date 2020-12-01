@@ -9,69 +9,66 @@
 
     <ui:define name="content">
 
-      
-            <p:growl id="msg"/>
-            <h:form id="form">
-                <h:panelGrid  columns="1" cellpadding="4">
-                <p:panel header="Registrar Frequencia Nota" style="margin: 10 auto;">
-                    
-                        <h:outputText value="Docente" />
-                        <p:selectOneMenu  value="#{registrarFrequenciaBean.frequencia.nomeDocente}" >
-                            <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-                            <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
-                        </p:selectOneMenu>
-                        <h:outputText value="Turma"/>
-                        <p:selectOneMenu  value="#{registrarFrequenciaBean.frequencia.idTurma}" >
-                            <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-                            <f:selectItems   value="#{registrarFrequenciaBean.turma}" />
-                        </p:selectOneMenu>
-                        <h:outputText value="Disciplina"/>
-                        <p:selectOneMenu   value="#{registrarFrequenciaBean.frequencia.idDisciplina}" >
-                            <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-                            <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
 
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Data Frequencia" />
-                        <p:inputMask id="date" mask="99/99/9999" value="#{registrarFrequenciaBean.frequencia.data}"/>
-                    
+        <p:growl id="msg"/>
+        <h:form id="form">
+            <h:panelGrid  columns="1" cellpadding="4">
+                <p:panel header="Registrar Frequencia Nota" style="margin: 10 auto;">
+
+                    <h:outputText value="Docente" />
+                    <p:selectOneMenu  value="#{registrarFrequenciaBean.frequencia.nomeDocente}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Turma"/>
+                    <p:selectOneMenu  value="#{registrarFrequenciaBean.frequencia.idTurma}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{registrarFrequenciaBean.turma}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Disciplina"/>
+                    <p:selectOneMenu   value="#{registrarFrequenciaBean.frequencia.idDisciplina}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
+
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Data Frequencia" />
+                    <p:inputMask id="date" mask="99/99/9999" value="#{registrarFrequenciaBean.frequencia.data}"/>
+
                 </p:panel>
-                
-                
-                         
-                <p:dataTable id="tabela"  var="aluno" editable="true" value="#{CadastroAlunoBean.alunos}">
-                    
+
+
+
+                <p:dataTable id="tabela"  var="freq" editable="true" value="#{registrarFrequenciaBean.frequencias}">
+
                     <p:column headerText="Matricula" >
-                        <p:cellEditor>
-                            <f:facet name="output"> <h:outputText value="#{aluno.matAluno}"/> </f:facet>
-                            <f:facet name="input"> <p:inputText value="#{registrarFrequenciaBean.frequencia.matricula}" style="width:100%"/> </f:facet>
-                        </p:cellEditor>
+
+                        <h:outputText value="#{freq.matricula}"/> 
+
                     </p:column>
 
                     <p:column headerText="NOME" >
-                        <p:cellEditor>
-                            <f:facet name="output"> <h:outputText value="#{aluno.nomecompleto}"/> </f:facet>
-                            <f:facet name="input"> <p:inputText value="#{registrarFrequenciaBean.frequencia.nomeAluno}" style="width:100%"/> </f:facet>
-                        </p:cellEditor>
+
+                        <h:outputText value="#{freq.nomeAluno}"/> 
+
                     </p:column>
-                    
+
                     <p:column headerText="Presença">
-                    <h:outputText value="Status"/>
-                    <p:selectOneMenu  value="#{registrarFrequenciaBean.frequencia.status}" >
+                        <h:outputText value="Status"/>
+                        <p:selectOneMenu  value="#{freq.status}" >
                             <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
                             <f:selectItem itemLabel="Ausente" itemValue="A" />
                             <f:selectItem itemLabel="Presente" itemValue="P" />
-<!--                            <f:selectItems   value="Ausente" />
-                            <f:selectItems   value="Presente" />-->
                         </p:selectOneMenu>
-                    
+
                     </p:column>
-                    
+
 
                 </p:dataTable>
-                     <p:commandButton value="Registrar" action="#{registrarFrequenciaBean.salvar()}"/>
-              </h:panelGrid>
-                
-            </h:form>
-        
+                <!--<p:commandButton value="Registrar" action="{registrarFrequenciaBean.salvar()}"/>-->
+            </h:panelGrid>
+            <p:commandButton value="Registrar" action="#{registrarFrequenciaBean.salvar()}"/>
+
+        </h:form>
+
     </ui:define>   
 </ui:decorate>

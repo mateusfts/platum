@@ -15,11 +15,9 @@
             <p:panel header="Registrar Frequencia Nota" style="margin: 10 auto;">
                 <h:panelGrid columns="4" cellpadding="2">
                     <h:outputText value="Semestre"/>
-                    <p:selectOneMenu  value="#{selectOneMenuView.console}" >
-                        <f:selectItem itemLabel="Selecione" itemValue="0" />
-                        <f:selectItem itemLabel="2020.2" itemValue="1" />
-                        <f:selectItem itemLabel="2021.1" itemValue="2" />
-                        <f:selectItem itemLabel="2021.2" itemValue="3" />
+                    <p:selectOneMenu  value="#{CadastroAlunoBean.aluno.idsemestre}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{registrarFrequenciaBean.turma}" />
                     </p:selectOneMenu>
                     <h:outputText value="Disciplina"/>
                     <p:selectOneMenu  value="#{selectOneMenuView.console}" >
