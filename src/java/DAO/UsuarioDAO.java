@@ -14,13 +14,13 @@ public class UsuarioDAO {
         Connection conexao = Conexao.getConnection();
         PreparedStatement ps;
         try{
-            ps = conexao.prepareStatement("select * from usuario where login=?, and senha=?"); // obtem apena uma única informação
+            ps = conexao.prepareStatement("select * from usuario where login=? and senha=?"); // obtem apena uma única informação
             ps.setString(1, login);
             ps.setString(2, senha);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 Usuario usuario = new Usuario(resultSet.getString("nome"), resultSet.getString("login"), 
-                                                resultSet.getString("senha"), resultSet.getInt("tipousuario"));
+                                                resultSet.getString("senha"), resultSet.getInt("tipo"));
                 return usuario;
             }
         }catch(SQLException ex){
