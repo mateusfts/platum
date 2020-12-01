@@ -23,7 +23,8 @@ public class RelatorioBean implements Serializable {
     RelatorioDAO relatorioDAO;
     List<Relatorio> relatorios;
     private Relatorio relatorio;
-    String semestre,disciplina,docente;
+//    String turma,disciplina,docente;
+    
     DisciplinaDAO disciplinaDAO;
     List<String> disc;
     List<String> prof;
@@ -40,7 +41,7 @@ public class RelatorioBean implements Serializable {
     
     @PostConstruct
     public void init() {
-       pesquisar();
+       
             
     }
     
@@ -48,7 +49,7 @@ public class RelatorioBean implements Serializable {
 
     public void pesquisar(){
         try{
-                relatorios = relatorioDAO.buscar(semestre, disciplina,docente);
+                relatorios = relatorioDAO.buscar(relatorio);
         }catch(Exception ex){
             
                 addMessage("Erro ao realizar consulta!");
@@ -115,13 +116,62 @@ public class RelatorioBean implements Serializable {
         this.relatorio = relatorio;
     }
 
-    public String getSemestre() {
-        return semestre;
+//    public String getTurma() {
+//        return turma;
+//    }
+//
+//    public void setTurma(String turma) {
+//        this.turma = turma;
+//    }
+//
+//    public String getDisciplina() {
+//        return disciplina;
+//    }
+//
+//    public void setDisciplina(String disciplina) {
+//        this.disciplina = disciplina;
+//    }
+//
+//    public String getDocente() {
+//        return docente;
+//    }
+//
+//    public void setDocente(String docente) {
+//        this.docente = docente;
+//    }
+
+    public DisciplinaDAO getDisciplinaDAO() {
+        return disciplinaDAO;
     }
 
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
+    public void setDisciplinaDAO(DisciplinaDAO disciplinaDAO) {
+        this.disciplinaDAO = disciplinaDAO;
     }
+
+    public List<String> getDisc() {
+        return disc;
+    }
+
+    public void setDisc(List<String> disc) {
+        this.disc = disc;
+    }
+
+    public List<String> getProf() {
+        return prof;
+    }
+
+    public void setProf(List<String> prof) {
+        this.prof = prof;
+    }
+
+    public ProfissionalDAO getProfissionalDAO() {
+        return profissionalDAO;
+    }
+
+    public void setProfissionalDAO(ProfissionalDAO profissionalDAO) {
+        this.profissionalDAO = profissionalDAO;
+    }
+    
     
     
 }
