@@ -1,0 +1,35 @@
+.login{
+    color: white;
+    background-image: url("https://cdn.discordapp.com/attachments/782659423503908900/783466588903833620/laptop-2557572_1920.jpg") !important;
+    background-size: cover;
+            
+}
+.painel{
+    background-color: rgba(0,0,0,0.7);
+    color: white !important;
+    border: none;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 10%);
+}
+.grid{
+    top: 50%;
+   color: white; 
+    margin-top: 30%;
+    transform: translateY(-50%);
+}
+.btnPadrao{
+    border: none !important;
+    background-color: #35489e !important;
+    outline: none !important;
+    color: white !important;
+}
+.barra{
+    background-color: white !important;
+    
+}
+.barra :hover{
+    background-color: #35489e !important;
+    color: white !important; 
+}

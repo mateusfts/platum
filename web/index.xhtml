@@ -6,22 +6,29 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/style.css" />
         <title>Login - Platum</title>
     </h:head>
-    <h:body>
+    <h:body styleClass="login">
         <div>
             <p:growl id="msg"/>
             <h:form id="loginForm">
-                <p:panel id="loginPnl" header="Login" style="width: 400px; margin: 0 auto;">
-                    <h:panelGrid id="loginPanel" columns="2" cellpadding="5">
+                <div style="text-align: center; padding: 0">
+                    <img src="PlatumPNG2.png" style="width: 200px; margin-top: 100px"/>
+                </div>
+                <p:panel id="loginPnl"  style="width: 400px; height: 350px" styleClass="painel">
+                    <div>
+                    <div style="text-align: center"> <label style="text-align: center; font-size: 28pt; color: white; font-weight:bold ">Login</label></div>
+                    <h:panelGrid id="loginPanel" columns="2" cellpadding="5" styleClass="grid">
                         <h:outputText value="Usuário" />
                         <p:inputText id="login" placeholder="Usuário" value="#{loginBean.login}"/>
                         <h:outputText value="Senha" />
                         <p:inputText id="senha" type="password" placeholder="Senha" value="#{loginBean.senha}"/>
                    </h:panelGrid>
                     <h:panelGrid columns="1" cellpadding="5" width="100%">
-                        <p:commandButton value="Acessar" action="#{loginBean.acessar()}"  style="display: block; margin: 0px auto;"></p:commandButton>
+                        <p:commandButton styleClass="btnPadrao" value="Acessar" action="#{loginBean.acessar()}"  style="display: block; margin: 0px auto;"></p:commandButton>
                     </h:panelGrid>
+                    </div>
                 </p:panel>
             </h:form>
         </div>

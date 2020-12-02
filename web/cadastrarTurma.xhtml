@@ -11,38 +11,41 @@
 
         <p:growl id="msg"/>
         <h:form id="form" >
-            
+
             <p:panel header="Cadastro Turma" style="margin: 10 auto;" >
 
-            <h:panelGrid id="grid" columns="4" cellpadding="2">
+                <h:panelGrid id="grid" columns="4" cellpadding="2">
 
-                <h:outputText value="Disciplina" />
-                <p:selectOneMenu  value="#{cadastroTurmaBean.turma.disciplinaId}" >
-                    <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-                    <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
+                    <h:outputText value="Disciplina" />
+                    <p:selectOneMenu  value="#{cadastroTurmaBean.turma.disciplinaId}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
 
-                </p:selectOneMenu>
+                    </p:selectOneMenu>
 
-                <h:outputText value="Semestre"/>
-                <p:inputMask mask="9999.9" value="#{cadastroTurmaBean.turma.semestreId}"/>
+                    <h:outputText value="Semestre"/>
+                    <p:inputMask mask="9999.9" value="#{cadastroTurmaBean.turma.semestreId}"/>
 
 
-                <p:outputLabel value="Nome Turma" />
-                <p:inputText  value="#{cadastroTurmaBean.turma.nomeTurma}"/>
+                    <p:outputLabel value="Nome Turma" />
+                    <p:inputText  value="#{cadastroTurmaBean.turma.nomeTurma}"/>
 
-                <h:outputText value="Docente"/>
-                <p:selectOneMenu  value="#{cadastroTurmaBean.turma.docenteId}" >
-                    <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-                    <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
-                </p:selectOneMenu>
+                    <h:outputText value="Docente"/>
+                    <p:selectOneMenu  value="#{cadastroTurmaBean.turma.docenteId}" >
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                        <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
+                    </p:selectOneMenu>
 
-                <p:button  value="Limpar"/>
-                <p:commandButton value="Cadastrar" update="grid" action="#{cadastroTurmaBean.salvar()}" />
-                <p:button  value="Voltar"/>
+                    <p:button  value="Limpar"/>
+                    <p:commandButton value="Cadastrar" update="grid" action="#{cadastroTurmaBean.salvar()}" />
+                    <p:button value="Voltar" href="faces/home.xhtml"/>
 
-            </h:panelGrid>
+                </h:panelGrid>
             </p:panel>
-
+            <br>
+                
+                
+            </br>
 
             <p:dataTable id="tabela"  var="turma" editable="true" value="#{cadastroTurmaBean.turmas}">
 
@@ -54,12 +57,12 @@
                     <p:commandButton value="Deletar"   id="delete" action="#{cadastroTurmaBean.deletar(turma)}" process="tabela"/>
                 </p:column>
 
-<!--                <p:column headerText="Id" >
-                    <p:cellEditor>
-                        <f:facet name="output"> <h:outputText value="#{turma.id}"/> </f:facet>
-                        <f:facet name="input"> <p:inputText value="#{turma.id}" style="width:100%"/> </f:facet>
-                    </p:cellEditor>
-                </p:column>-->
+                <!--                <p:column headerText="Id" >
+                                    <p:cellEditor>
+                                        <f:facet name="output"> <h:outputText value="#{turma.id}"/> </f:facet>
+                                        <f:facet name="input"> <p:inputText value="#{turma.id}" style="width:100%"/> </f:facet>
+                                    </p:cellEditor>
+                                </p:column>-->
 
                 <p:column headerText="NOME" >
                     <p:cellEditor>

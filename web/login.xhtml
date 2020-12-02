@@ -6,13 +6,14 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
+        <link type="text/css" rel="stylesheet" href="/style.css" />
         <title>Login - Platum</title>
     </h:head>
-    <h:body>
+    <h:body styleClass="login">
         <div>
             <p:growl id="msg"/>
             <h:form id="loginForm">
-                <p:panel id="loginPnl" header="Login" style="width: 400px; margin: 0 auto;">
+                <p:panel id="loginPnl" header="Login"  style=" width: 400px; margin: 0 auto;">
                     <h:panelGrid id="loginPanel" columns="2" cellpadding="5">
                         <h:outputText value="Usuário" />
                         <p:inputText id="login" placeholder="Usuário" value="#{loginBean.login}"/>

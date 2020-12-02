@@ -30,9 +30,11 @@
                             <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
                             <f:selectItems   value="#{cadastroTurmaBean.profissional}" />
                         </p:selectOneMenu>
+                        <p:column/>
+                        <p:column/>
                         <p:button  value="Limpar" />
                         <p:commandButton value="Pesquisar" action="#{RelatorioBean.pesquisar()}"/> 
-                        <p:button  value="Voltar" />
+                        <p:button  value="Voltar" href="faces/home.xhtml"/>
                     </h:panelGrid>
 
                     <p:dataTable id="tabela"  var="relatorio" editable="true" value="#{RelatorioBean.relatorios}">
@@ -57,7 +59,7 @@
                                 <f:facet name="input"> <p:inputText value="#{relatorio.iddocente}" style="width:100%"/> </f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="Matricula" >
                             <p:cellEditor>
                                 <f:facet name="output"> <h:outputText value="#{relatorio.matricula}"/> </f:facet>

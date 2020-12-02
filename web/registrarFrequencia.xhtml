@@ -13,7 +13,7 @@
         <p:growl id="msg"/>
         <h:form id="form">
             <h:panelGrid  columns="1" cellpadding="4">
-                <p:panel header="Registrar Frequencia Nota" style="margin: 10 auto;">
+                <p:panel header="Registrar Frequencia " style="margin: 10 auto;">
 
                     <h:outputText value="Docente" />
                     <p:selectOneMenu  value="#{registrarFrequenciaBean.frequencia.nomeDocente}" >
@@ -66,7 +66,10 @@
                 </p:dataTable>
                 <!--<p:commandButton value="Registrar" action="{registrarFrequenciaBean.salvar()}"/>-->
             </h:panelGrid>
+            <p:button  value="Limpar"/>
             <p:commandButton value="Registrar" action="#{registrarFrequenciaBean.salvar()}"/>
+            <p:button  value="Voltar" href="faces/home.xhtml"/>
+            
 
         </h:form>
 

@@ -61,13 +61,15 @@
                         <f:selectItems   value="#{cadastroTurmaBean.disciplina}" />
                     </p:selectOneMenu>    
                         <!--                <p:separator/>-->
-
+                        <p:column></p:column>
+                        <p:button  value="Limpar"/>
                         <p:commandButton value="Cadastrar" update="grid" action="#{CadastroAlunoBean.salvar()}" />
+                        <p:button value="Voltar" href="faces/home.xhtml"/>
 
                 </h:panelGrid>
             </p:panel>
 
-
+                
 
             <p:dataTable id="tabela"  var="aluno" editable="true" value="#{CadastroAlunoBean.alunos}">
 
